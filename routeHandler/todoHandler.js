@@ -24,7 +24,12 @@ router.post("/", async (req, res) => {
 
 // post the todo
 router.post("/all", async (req, res) => {
-    
+    try {
+        const multiple = await Todo.insertMany(req.body);
+        res.status(201).json(multiple);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
 //  post multiple the todo
