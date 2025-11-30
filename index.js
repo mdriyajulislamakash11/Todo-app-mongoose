@@ -6,10 +6,17 @@ const app = express();
 app.use(express.json())
 
 // database connection with mongoose
-
+mongoose.connect(`mongodb://localhost/todos`)
+.then(() => {
+    console.log("successfully database connecting");
+})
+.catch((err) => {
+    console.log("database error: ", err.message);
+});
 
 
 // application route
+app.use('/todo', todoHandler);
 
 
 
