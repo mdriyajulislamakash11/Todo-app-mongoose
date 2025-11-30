@@ -5,7 +5,9 @@ const todoSchema = require("../Schemas/todoSchema");
 const Todo = new mongoose.model("Todo", todoSchema);
 
 // get all the todo
-router.get("/", async (req, res) => {});
+router.get("/", async (req, res) => {
+    
+});
 
 // get all the todo
 router.get("/:id", async (req, res) => {});
@@ -50,6 +52,8 @@ router.put("/:id", async (req, res) => {
 });
 
 // delete the todo
-router.delete("/:id", async (req, res) => {});
+router.delete("/:id", async (req, res) => {
+
+});
 
 module.exports = router;
