@@ -31,12 +31,27 @@ router.get("/", async (req, res) => {
 //         _id: 0,
 //         _v: 0,
 //         _date: 0
-//     })
+//     }).limit(2).exec()
 //     res.status(200).json(getAllData);
 //   } catch (error) {
 //     res.status(400).json({ message: error.message });
 //   }
 // });
+
+// get data limit
+// router.get("/", async (req, res) => {
+//   try {
+//     const getAllData = await Todo.find().select({
+//         _id: 0,
+//         _v: 0,
+//         _date: 0
+//     }).limit(2)
+//     res.status(200).json(getAllData);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
+
 
 // get all the todo
 router.get("/:id", async (req, res) => {});
