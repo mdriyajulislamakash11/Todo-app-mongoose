@@ -4,10 +4,39 @@ const router = express.Router();
 const todoSchema = require("../Schemas/todoSchema");
 const Todo = new mongoose.model("Todo", todoSchema);
 
-// get all the todo
+// get all the todo 
 router.get("/", async (req, res) => {
-    
+  try {
+    const getAllData = await Todo.find();
+    res.status(200).json(getAllData);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
+
+// get category ways ba je kono prpperty er name diye find the todo
+// router.get("/", async (req, res) => {
+//   try {
+//     const getAllData = await Todo.find({title: 'jhinuk'});
+//     res.status(200).json(getAllData);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
+
+// get selected data --> mane hocche ami jodi data theke kono property bad diye data get korte cai 
+// router.get("/", async (req, res) => {
+//   try {
+//     const getAllData = await Todo.find().select({
+//         _id: 0,
+//         _v: 0,
+//         _date: 0
+//     })
+//     res.status(200).json(getAllData);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
 
 // get all the todo
 router.get("/:id", async (req, res) => {});
@@ -52,8 +81,6 @@ router.put("/:id", async (req, res) => {
 });
 
 // delete the todo
-router.delete("/:id", async (req, res) => {
-
-});
+router.delete("/:id", async (req, res) => {});
 
 module.exports = router;
