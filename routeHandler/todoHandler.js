@@ -4,7 +4,7 @@ const router = express.Router();
 const todoSchema = require("../Schemas/todoSchema");
 const Todo = new mongoose.model("Todo", todoSchema);
 
-// get all the todo 
+// get all the todo
 router.get("/", async (req, res) => {
   try {
     const getAllData = await Todo.find();
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 //   }
 // });
 
-// get selected data --> mane hocche ami jodi data theke kono property bad diye data get korte cai 
+// get selected data --> mane hocche ami jodi data theke kono property bad diye data get korte cai
 // router.get("/", async (req, res) => {
 //   try {
 //     const getAllData = await Todo.find().select({
@@ -52,9 +52,15 @@ router.get("/", async (req, res) => {
 //   }
 // });
 
-
 // get all the todo
-router.get("/:id", async (req, res) => {});
+router.get("/:id", async (req, res) => {
+  try {
+    const onData = await Todo.findById({ _id: req.params.id });
+    res.status(200).json(onData);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 // CREATE TODO
 router.post("/", async (req, res) => {
@@ -97,13 +103,12 @@ router.put("/:id", async (req, res) => {
 
 // delete the todo
 router.delete("/:id", async (req, res) => {
-    try {
-        const todoDelete = await Todo.deleteOne({_id: req.params.id})
-        res.status(200).json(todoDelete)
-    } catch (error) {
-         res.status(400).json({ message: error.message });
-    }
-
+  try {
+    const todoDelete = await Todo.deleteOne({ _id: req.params.id });
+    res.status(200).json(todoDelete);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
 
 module.exports = router;
