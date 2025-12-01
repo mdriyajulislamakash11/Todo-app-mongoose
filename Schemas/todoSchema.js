@@ -38,8 +38,12 @@ todoSchema.statics = {
 // query methods --------------
 todoSchema.query = {
   byLanguage: function (language) {
-    return this.find({ title: new RegExp(language, "i") });
-    
+    return this.find({
+      $or: [
+        { title: new RegExp(language, "i") } ,
+        { description: new RegExp(language, "i") },
+      ],
+    });
   },
 };
 

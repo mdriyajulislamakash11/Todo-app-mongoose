@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   }
 });
 -(
-  // instance methods learn -------------------------- important
+  // instance methods learn -------------------------- important 
   router.get("/active", async (req, res) => {
     try {
       const todo = new Todo(); // instance create
@@ -33,6 +33,17 @@ router.get("/js", async (req, res) => {
   res.status(200).json({
     data,
   });
+});
+
+
+// /language route query methods--------------------------- important
+router.get("/language", async (req, res) => {
+  try {
+    const data = await Todo.find().byLanguage("jhinuk"); // query helper call
+    res.status(200).json({ data });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 });
 
 // get category ways ba je kono prpperty er name diye find the todo
