@@ -26,6 +26,10 @@ router.get("/active", async (req, res) => {
     }
 });
 
+// static methods learn ____________________________ important
+
+
+
 // get category ways ba je kono prpperty er name diye find the todo
 // router.get("/", async (req, res) => {
 //   try {
