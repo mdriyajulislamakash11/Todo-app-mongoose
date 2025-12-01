@@ -1,19 +1,6 @@
 const mongoose = require("mongoose");
 
-//1
-//1
-//1
-//1
-//1
-//1
-//1
-//1
-//1
-//1
-//1
-//1
-//1
-//1
+
 
 const todoSchema = mongoose.Schema({
   title: {
