@@ -19,13 +19,20 @@ const todoSchema = mongoose.Schema({
   },
 });
 
-// instance methods 
+// instance methods
 todoSchema.methods = {
   findActive: function () {
-  return mongoose.model("Todo").find({ status: "active" });
-}
+    return mongoose.model("Todo").find({ status: "active" });
+  },
 };
 
-
+// static methods ----------------
+todoSchema.statics = {
+  findByJS: function () {
+    return this.find({
+      $or: [{ title: /js/i }, { description: /js/i }],
+    });
+  },
+};
 
 module.exports = todoSchema;

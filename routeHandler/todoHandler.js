@@ -13,22 +13,27 @@ router.get("/", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
--
-// instance methods learn -------------------------- important
-router.get("/active", async (req, res) => {
+-(
+  // instance methods learn -------------------------- important
+  router.get("/active", async (req, res) => {
     try {
-        const todo = new Todo();          // instance create
-        const data = await todo.findActive(); // instance method call
-        
-        res.status(200).json(data);       // response send
+      const todo = new Todo(); // instance create
+      const data = await todo.findActive(); // instance method call
+
+      res.status(200).json(data); // response send
     } catch (error) {
-        res.status(400).json({ message: error.message });
+      res.status(400).json({ message: error.message });
     }
-});
+  })
+);
 
 // static methods learn ____________________________ important
-
-
+router.get("/js", async (req, res) => {
+  const data = await Todo.findByJS();
+  res.status(200).json({
+    data,
+  });
+});
 
 // get category ways ba je kono prpperty er name diye find the todo
 // router.get("/", async (req, res) => {
@@ -126,6 +131,5 @@ router.delete("/:id", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-
 
 module.exports = router;
