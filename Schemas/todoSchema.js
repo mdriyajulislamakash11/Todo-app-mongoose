@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const todoSchema = mongoose.Schema({
   title: {
     type: "string",
@@ -20,7 +19,7 @@ const todoSchema = mongoose.Schema({
   },
 });
 
-// instance methods
+// instance methods ---------------
 todoSchema.methods = {
   findActive: function () {
     return mongoose.model("Todo").find({ status: "active" });
@@ -33,6 +32,13 @@ todoSchema.statics = {
     return this.find({
       $or: [{ title: /js/i }, { description: /js/i }],
     });
+  },
+};
+
+// query methods --------------
+todoSchema.query = {
+  byLanguage: function (language) {
+    return this.find({ title: new RegExp(language, "i") });
   },
 };
 
