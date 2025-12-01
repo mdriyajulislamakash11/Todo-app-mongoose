@@ -13,7 +13,8 @@ router.get("/", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-
+-
+// instance methods learn -------------------------- important
 router.get("/active", async (req, res) => {
     try {
         const todo = new Todo();          // instance create
