@@ -14,6 +14,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/active", async (req, res) => {
+    try {
+        const todo = new Todo();          // instance create
+        const data = await todo.findActive(); // instance method call
+        
+        res.status(200).json(data);       // response send
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
 // get category ways ba je kono prpperty er name diye find the todo
 // router.get("/", async (req, res) => {
 //   try {
@@ -62,7 +73,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// CREATE TODO  
+// CREATE TODO
 router.post("/", async (req, res) => {
   try {
     const todo = new Todo(req.body);
@@ -110,5 +121,6 @@ router.delete("/:id", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
 
 module.exports = router;
